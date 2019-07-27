@@ -1,13 +1,28 @@
 $(document).ready(function () {
+    const apikey = "SEY5863UOBCH9KA8"
+    const url = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=MSFT&outputsize=compact&apikey=" + apikey
+    let today = new Date();
+    let year = today.getFullYear()
+    toString(year);
+    let month = "0" + (today.getMonth()+1)
+    toString(month);
+    let day = today.getDate();
+    toString(day);
+    if (month.length < 2) {month = "0" + month};
+    if (day.length < 2) {day = "0" + day};
+    todaysdate = [year, month, day].join('-');
+    // toString(date);
+    console.log(todaysdate);
+    $.ajax({
+        url: url,
+              method: "GET"
+            }).then(function(response){
+                console.log(response)
+                let closeC = response["Time Series (Daily)"][toString(todaysdate)]["4. close"];
+                let volume = response["Time Series (Daily)"]["2019-07-29"]["4. close"]
+            });
 
-    // const url = "https://cloud.iexapis.com/?&apikey=pk_b913cbce5cbb428eb5a5bbcba33eb6da"
-
-    // $.ajax({
-    //     url: url,
-    //           method: "GET"
-    //         }).then(function(response){
-    //             console.log(response);
-    //         });
+            
     $('#submit').on("click", function () {
         let dval = $('#val').val();
         console.log(dval);
