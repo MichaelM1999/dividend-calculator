@@ -1,6 +1,15 @@
 $(document).ready(function () {
+    $('#submit').on("click", function () {
+        let dval = $('#val').val();
+        console.log(dval);
+/// prices
+const ford = 10.23;
+const ge = 10.50;
+const apple = 197.92;
+const disney = 139.64;
+// months 
     const apikey = "SEY5863UOBCH9KA8"
-    const url = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=MSFT&outputsize=compact&apikey=" + apikey
+    const url = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=" + dval + "&outputsize=compact&apikey=" + apikey
     let today = new Date();
     let year = today.getFullYear()
     toString(year);
@@ -23,15 +32,6 @@ $(document).ready(function () {
             });
 
             
-    $('#submit').on("click", function () {
-        let dval = $('#val').val();
-        console.log(dval);
-/// prices
-const ford = 10.23;
-const ge = 10.50;
-const apple = 197.92;
-const disney = 139.64;
-// months 
 
 
 
