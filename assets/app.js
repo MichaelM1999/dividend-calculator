@@ -27,8 +27,10 @@ const disney = 139.64;
               method: "GET"
             }).then(function(response){
                 console.log(response)
-                let closeC = response["Time Series (Daily)"][toString(todaysdate)]["4. close"];
-                let volume = response["Time Series (Daily)"]["2019-07-29"]["4. close"]
+                let closeC = response["Time Series (Daily)"][todaysdate]["4. close"];
+                let volume = response["Time Series (Daily)"][todaysdate]["6. volume"];
+                console.log(closeC);
+                console.log(volume);
             });
 
             
