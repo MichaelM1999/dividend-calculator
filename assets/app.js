@@ -13,10 +13,11 @@ $(document).ready(function () {
             weekday[4] = "Thursday";
             weekday[5] = "Friday";
             weekday[6] = "Saturday";
-          
+
             let n = weekday[d.getDay()];
             console.log(n);
         };
+        myFunction();
         /// prices
         // const ford = 10.23;
         // const ge = 10.50;
@@ -49,12 +50,22 @@ $(document).ready(function () {
         }).then(function (response) {
             console.log(response)
             let closeC = response["Time Series (Daily)"][todaysdate]["4. close"];
-            if(closeC === undefined){
-                recentday = (today.getDate() -2);
+            let volume = response["Time Series (Daily)"][todaysdate]["6. volume"];
+
+            if (n === "sunday") {
+                recentday = (today.getDate() - 2);
                 mostrecentdate = [year, month, recentday].join('-');
                 closeC = response["Time Series (Daily)"][mostrecentdate]["4. close"];
+                let volume = response["Time Series (Daily)"][mostrecentdate]["6. volume"];
             }
-            let volume = response["Time Series (Daily)"][todaysdate]["6. volume"];
+
+            if (n === "saturday") {
+                recentday = (today.getDate() - 1);
+                mostrecentdate = [year, month, recentday].join('-');
+                closeC = response["Time Series (Daily)"][mostrecentdate]["4. close"];
+                let volume = response["Time Series (Daily)"][mostrecentdate]["6. volume"];
+            }
+            
             console.log(closeC);
             console.log(volume);
         });
