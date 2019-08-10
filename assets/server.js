@@ -15,4 +15,6 @@ app.get("/add", function(req, res) {
     res.sendFile(path.join(__dirname, "add.html"));
   });
 
+
+  
 //NEXT STEP: WORK on DATABASE that holds bought and sold shares

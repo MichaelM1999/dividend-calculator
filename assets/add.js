@@ -49,7 +49,7 @@ $(document).ready(function () {
             console.log(closeC);
             console.log(volume);
 
-            // $.post("/api/buy") // use to post when they add to the database
+            $.post("/api/buy") // use to post when they add to the database
         });
 
 
@@ -58,41 +58,3 @@ $(document).ready(function () {
 
     })
 });
-        // day of the week
-        // function myFunction() {
-        //     let d = new Date();
-        //     let weekday = new Array(7);
-        //     weekday[0] = "Sunday";
-        //     weekday[1] = "Monday";
-        //     weekday[2] = "Tuesday";
-        //     weekday[3] = "Wednesday";
-        //     weekday[4] = "Thursday";
-        //     weekday[5] = "Friday";
-        //     weekday[6] = "Saturday";
-
-        //     let n = weekday[d.getDay()];
-        //     console.log(n);
-        // };
-        // myFunction();
-
-        // collects time for api 
-        // let today = new Date();
-        // let year = today.getFullYear()
-        // year.toString();
-        // let month = (today.getMonth() + 1)
-        // if (month.length < 2) {
-        //     month = "0" + month
-        // };
-        // month.toString();
-        // console.log(month);
-        // let day = today.getDate();
-        // day.toString();
-        // if (day.length < 2) {
-        //     day = "0" + day
-        // };
-        // todaysdate = [year, month, day].join('-');
-        // console.log(todaysdate);
-        // // toString(date);
-        // // api call and data collection
-
-
