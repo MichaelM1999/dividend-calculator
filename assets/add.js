@@ -45,11 +45,10 @@ $(document).ready(function () {
                 console.log(closeC);
                 console.log(volume);
             }
-            
+
             console.log(closeC);
             console.log(volume);
 
-            $.post("/api/buy") // use to post when they add to the database
         });
 
 
