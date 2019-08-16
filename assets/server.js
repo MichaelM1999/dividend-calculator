@@ -1,8 +1,12 @@
 var express = require("express");
 var path = require("path");
+const exphbs = require("express-handlebars");
 
 var app = express();
 var PORT = 3000;
+
+app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+app.set("view engine", "handlebars");
 
 app.use(express.urlencoded({
   extended: true
@@ -10,14 +14,14 @@ app.use(express.urlencoded({
 app.use(express.json());
 //routes
 app.get("/", function (req, res) {
-  res.sendFile(path.join(__dirname, "index.html"));
+  res.render(path.join(__dirname, "/views/index.handlebars"));
 });
 
 app.get("/add", function (req, res) {
-  res.sendFile(path.join(__dirname, "add.html"));
+  res.render(path.join(__dirname, "/views/portfolio.handlebars"));
 });
 
-$.post("/api/buy", function (req, res) {
+app.post("/api/buy", function (req, res) {
   const connection = mysql.createConnection({
     host: "localhost",
     port: 3306,
@@ -31,11 +35,16 @@ $.post("/api/buy", function (req, res) {
       return res.status(500).end();
     }
 
-    res.render("portfolio", {
+    res.render("/views/portfolio.handlebars", {
       plans: data
 });
   });
 });
+app.listen(PORT, function() {
+  // Log (server-side) when our server has started
+  console.log("Server listening on: http://localhost:" + PORT);
+});
+
 // use to post when they add to the database
 
 
