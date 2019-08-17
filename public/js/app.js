@@ -11,6 +11,8 @@ $(document).ready(function () {
     const dayofweek = moment().format("dddd");
     console.log(dayofweek);
     $('#submit').on("click", function () {
+        console.log("HELLO?")
+
         let dval = $('#val').val();
         console.log(dval);
         const apikey = "SEY5863UOBCH9KA8"
