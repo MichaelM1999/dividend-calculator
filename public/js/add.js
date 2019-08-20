@@ -10,8 +10,8 @@ $(document).ready(function () {
     console.log(todaysdate);
     const dayofweek = moment().format("dddd");
     console.log(dayofweek);
-    $('#submit').on("click", function () {
-        let dval = $('#val').val();
+    $('#submit-add').on("click", function () {
+        let dval = $('#stockname').val();
         console.log(dval);
         const apikey = "SEY5863UOBCH9KA8"
         const url = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=" + dval + "&outputsize=compact&apikey=" + apikey
@@ -48,9 +48,30 @@ $(document).ready(function () {
 
             console.log(closeC);
             console.log(volume);
-
+            $(".create-form").on("submit", function(event) {
+                // Make sure to preventDefault on a submit event.
+                event.preventDefault();
+            
+                var newShares = {
+                  name: $("#stockname").val().trim(),
+                  close: closeC,
+                  amount: $("#amount").val().trim
+                };
+            
+                // Send the POST request.
+                $.ajax("/api/buy", {
+                  type: "POST",
+                  data: newShares
+                }).then(
+                  function() {
+                    console.log("created new quote");
+                    // Reload the page to get the updated list
+                    location.reload();
+                  }
+                );
+              });            
         });
-
+//add disired classes to the handlebars tags to recieve info to post to database
 
 
 

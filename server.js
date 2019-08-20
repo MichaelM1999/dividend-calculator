@@ -20,7 +20,7 @@ app.get("/", function (req, res) {
 });
 
 app.get("/add", function (req, res) {
-  res.render(path.join(__dirname, "/views/portfolio.handlebars"));
+  res.render(path.join(__dirname, "/views/add.handlebars"));
 });
 
 app.post("/api/buy", function (req, res) {
