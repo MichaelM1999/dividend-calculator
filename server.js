@@ -22,7 +22,14 @@ app.get("/", function (req, res) {
 app.get("/add", function (req, res) {
   res.render(path.join(__dirname, "/views/add.handlebars"));
 });
+app.get("/portfolio", function (req, res) {
+  res.render(path.join(__dirname, "/views/portfolio.handlebars"));
+});
+app.get("/purchase", function (req, res) {
+  res.render(path.join(__dirname, "/views/purchase.handlebars"));
+});
 
+// build this out to save purchased amount to database should be a post
 app.post("/api/buy", function (req, res) {
   const connection = mysql.createConnection({
     host: "localhost",
@@ -37,8 +44,8 @@ app.post("/api/buy", function (req, res) {
       return res.status(500).end();
     }
 
-    res.render("/views/portfolio.handlebars", {
-      plans: data
+    res.render("purchase", {
+     share : data
 });
   });
 });
