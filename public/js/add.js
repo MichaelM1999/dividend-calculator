@@ -48,7 +48,6 @@ $(document).ready(function () {
 
             console.log(closeC);
             console.log(volume);
-            $(".create-form").on("submit", function(event) {
                 // Make sure to preventDefault on a submit event.
                 event.preventDefault();
             
@@ -64,17 +63,17 @@ $(document).ready(function () {
                   data: newShares
                 }).then(
                   function() {
-                    console.log("created new quote");
+                    console.log("added new shares");
                     // Reload the page to get the updated list
                     location.reload();
                   }
-                );
-              });            
+                );           
         });
 //add disired classes to the handlebars tags to recieve info to post to database
-
-
-
-
     })
+    $('#home').on('click', event => {
+      event.preventDefault()
+      window.location = '/';
+      console.log('working');
+  });
 });
