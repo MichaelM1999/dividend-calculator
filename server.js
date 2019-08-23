@@ -31,6 +31,7 @@ app.get("/purchase", function (req, res) {
 
 // build this out to save purchased amount to database should be a post
 app.post("/api/buy", function (req, res) {
+  console.log("hi");
   const connection = mysql.createConnection({
     host: "localhost",
     port: 3306,
@@ -38,16 +39,17 @@ app.post("/api/buy", function (req, res) {
     password: "Mm64088031!",
     database: "stocks_db"
   });
-  connection.end();
+  console.log(req.body);
   connection.query("SELECT * FROM user_owned;", function (err, data) {
     if (err) {
       return res.status(500).end();
     }
-
+    
     res.render("purchase", {
-     share : data
-});
+      share : data
+    });
   });
+  connection.end();
 });
 app.listen(PORT, function() {
   // Log (server-side) when our server has started
