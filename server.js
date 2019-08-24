@@ -1,6 +1,7 @@
 var express = require("express");
 var path = require("path");
 const exphbs = require("express-handlebars");
+const mysql = require("mysql");
 
 var app = express();
 var PORT = 3000;
@@ -40,7 +41,13 @@ app.post("/api/buy", function (req, res) {
     database: "stocks_db"
   });
   console.log(req.body);
-  connection.query("SELECT * FROM user_owned;", function (err, data) {
+  connection.query("INSERT INTO user_owned SET ?;", 
+  {
+  shareName: req.body.name,
+  purchasedPrice: req.body.close,
+  volume: req.body.amount,
+  purchaseDate:req.body.time
+  },function (err, data) {
     if (err) {
       return res.status(500).end();
     }

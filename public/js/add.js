@@ -47,7 +47,7 @@ $(document).ready(function () {
                 let volume = response["Time Series (Daily)"][mostrecentdate]["6. volume"];
                 console.log(closeC);
                 console.log(volume);
-                postfunction(closeC);
+                postfunction(closeC, mostrecentdate);
             }
 
             console.log(closeC);
@@ -59,7 +59,8 @@ $(document).ready(function () {
                 var newShares = {
                   name: $("#stockname").val().trim(),
                   close: closeC,
-                  amount: $("#amount").val().trim
+                  amount: $("#amount").val().trim(),
+                  time: mostrecentdate
                 };
                 console.log(newShares);
                 // Send the POST request.
