@@ -57,7 +57,12 @@ $(document).ready(function () {
     $('#link').on('click', event => {
         event.preventDefault()
         window.location = '/add';
-        console.log('working');
+        // console.log('working');
+    });
+    $('#portfolio').on('click', event => {
+        event.preventDefault()
+        window.location = '/portfolio';
+        // console.log('working');
     });
 });
 
