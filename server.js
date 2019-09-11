@@ -6,6 +6,14 @@ const mysql = require("mysql");
 var app = express();
 var PORT = 3000;
 
+    const connection = mysql.createConnection({
+      host: "localhost",
+      port: 3306,
+      user: "root",
+      password: "Mm64088031!",
+      database: "stocks_db"
+    });
+
 app.use(express.static("public"));
 //put into public folder so that js and css all serve;
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
@@ -33,15 +41,8 @@ app.get("/purchase", function (req, res) {
 // build this out to save purchased amount to database should be a post
 app.post("/api/buy", function (req, res) {
   console.log("hi");
-  const connection = mysql.createConnection({
-    host: "localhost",
-    port: 3306,
-    user: "root",
-    password: "Mm64088031!",
-    database: "stocks_db"
-  });
   console.log(req.body);
-  connection.query("INSERT INTO user_owned SET ?;", 
+  connection.query("INSERT INTO user_owned SET ?", 
   {
   shareName: req.body.name,
   purchasedPrice: req.body.close,
@@ -52,9 +53,9 @@ app.post("/api/buy", function (req, res) {
       return res.status(500).end();
     }
     
-    res.render("purchase", {
-      share : data
-    });
+    // res.render("purchase", {
+    //   share : data
+    // });
   });
   connection.end();
 });
