@@ -6,17 +6,19 @@ const mysql = require("mysql");
 var app = express();
 var PORT = 3000;
 
-    const connection = mysql.createConnection({
-      host: "localhost",
-      port: 3306,
-      user: "root",
-      password: "Mm64088031!",
-      database: "stocks_db"
-    });
+const connection = mysql.createConnection({
+  host: "localhost",
+  port: 3306,
+  user: "root",
+  password: "Mm64088031!",
+  database: "stocks_db"
+});
 
 app.use(express.static("public"));
 //put into public folder so that js and css all serve;
-app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+app.engine("handlebars", exphbs({
+  defaultLayout: "main"
+}));
 app.set("view engine", "handlebars");
 
 app.use(express.urlencoded({
@@ -42,24 +44,22 @@ app.get("/purchase", function (req, res) {
 app.post("/api/buy", function (req, res) {
   console.log("hi");
   console.log(req.body);
-  connection.query("INSERT INTO user_owned SET ?", 
-  {
-  shareName: req.body.name,
-  purchasedPrice: req.body.close,
-  volume: req.body.amount,
-  purchaseDate:req.body.time
-  },function (err, data) {
+  connection.query("INSERT INTO user_owned SET ?", {
+    shareName: req.body.name,
+    purchasedPrice: req.body.close,
+    volume: req.body.amount,
+    purchaseDate: req.body.time
+  }, function (err, data) {
     if (err) {
       return res.status(500).end();
     }
-    
-    // res.render("purchase", {
-    //   share : data
-    // });
+    res.render("purchase", {
+      share : data
+    });
   });
   connection.end();
 });
-app.listen(PORT, function() {
+app.listen(PORT, function () {
   // Log (server-side) when our server has started
   console.log("Server listening on: http://localhost:" + PORT);
 });

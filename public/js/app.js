@@ -11,6 +11,9 @@ $(document).ready(function () {
     const dayofweek = moment().format("dddd");
     console.log(dayofweek);
     $('#submit').on("click", function () {
+        $(".stockPrice").val("");
+        $(".stockVol").val("");
+        $(".stockName").val("");
         console.log("HELLO?")
 
         let dval = $('#val').val();
@@ -28,6 +31,7 @@ $(document).ready(function () {
                 let volume = response["Time Series (Daily)"][todaysdate]["6. volume"];
                 console.log(closeC);
                 console.log(volume);
+                stockDisplay(volume, closeC, dval);
             }
             if (dayofweek === "Sunday") {
                 recentday = (moment().subtract(2, 'days').format("DD"));
@@ -37,6 +41,7 @@ $(document).ready(function () {
                 let volume = response["Time Series (Daily)"][mostrecentdate]["6. volume"];
                 console.log(closeC);
                 console.log(volume);
+                stockDisplay(volume, closeC, dval);
             }
             if (dayofweek === "Saturday") {
                 recentday = (moment().subtract(1, 'days').format("DD"));
@@ -46,11 +51,12 @@ $(document).ready(function () {
                 let volume = response["Time Series (Daily)"][mostrecentdate]["6. volume"];
                 console.log(closeC);
                 console.log(volume);
+                stockDisplay(volume, closeC, dval);
             }
 
             console.log(closeC);
             console.log(volume);
-
+            stockDisplay(volume, closeC, dval);
             // $.post("/api/buy") // use to post when they add to the database
         });
     });
@@ -64,8 +70,11 @@ $(document).ready(function () {
         window.location = '/portfolio';
         // console.log('working');
     });
-});
 
+});
+const stockDisplay = (volume, price, name) => {
+    $(".searched").append("there are currently " + volume + " shares of " + name + " avalable at $" + price + " per share. ")
+}
 
 
 // day of the week
